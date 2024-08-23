@@ -1,4 +1,5 @@
 # projet-CDA
+
 Projet Spring Boot Multi-Module avec Thymeleaf, Bootstrap, et Junit
 Ce projet est un exemple de mise en place d'une application web multi-module avec Spring Boot, utilisant Thymeleaf pour le moteur de template, Bootstrap pour la mise en page, et intégrant Junit pour les tests.
 
@@ -31,7 +32,7 @@ Clonez le dépôt Git en utilisant la commande suivante :
 
 text
 
-git clone https://github.com/votre-utilisateur/projet-spring-boot-multi-module-thymeleaf-bootstrap.git
+git clone
 Accédez au répertoire du projet :
 
 text
@@ -45,7 +46,7 @@ mvn spring-boot:run
 Une fois le projet lancé, ouvrez un navigateur web et accédez à l'URL suivante : http://localhost:8080
 
 Contact des Auteurs
-Si vous avez des questions ou des commentaires sur ce projet, n'hésitez pas à contacter les auteurs :
+Si vous avez des questions ou des commentaires sur ce projet, n'hésitez pas à me contacter :
 
 Auteur Arabe HIDOUCHE : hkass@hotmail.fr
-Nous espérons que ce projet vous sera utile dans la mise en place de votre propre application web Spring Boot multi-module avec Thymeleaf, Bootstrap, et Junit. Bonne codage!
+J' espére que ce projet vous sera utile dans la mise en place de votre propre application web Spring Boot multi-module avec Thymeleaf, Bootstrap, et Junit. Bonne codage!
