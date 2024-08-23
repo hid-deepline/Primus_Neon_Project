@@ -31,7 +31,7 @@ Clonez le dépôt Git en utilisant la commande suivante :
 
 text
 
-git clone https://github.com/votre-utilisateur/projet-spring-boot-multi-module-thymeleaf-bootstrap.git
+git clone 
 Accédez au répertoire du projet :
 
 text
@@ -42,10 +42,10 @@ Compilez et exécutez le projet en utilisant Maven :
 text
 
 mvn spring-boot:run
-Une fois le projet lancé, ouvrez un navigateur web et accédez à l'URL suivante : http://localhost:8080
+Une fois le projet lancé, ouvrez un navigateur web et accédez à l'URL suivante : http://localhost:8089
 
 Contact des Auteurs
-Si vous avez des questions ou des commentaires sur ce projet, n'hésitez pas à contacter les auteurs :
+Si vous avez des questions ou des commentaires sur ce projet, n'hésitez pas à me contacter :
 
 Auteur Arabe HIDOUCHE : hkass@hotmail.fr
-Nous espérons que ce projet vous sera utile dans la mise en place de votre propre application web Spring Boot multi-module avec Thymeleaf, Bootstrap, et Junit. Bonne codage!
+J' espére que ce projet vous sera utile dans la mise en place de votre propre application web Spring Boot multi-module avec Thymeleaf, Bootstrap, et Junit. Bon codage!
