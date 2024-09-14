@@ -52,7 +52,7 @@
 							class="mb-2" />
 						<div class="mt-2">
 							<img id="thumbnail" alt="Aperçu de l'image"
-								th:src="@{/images/image-thumbnail.png}" class="img-fluid" />
+								th:src="@{${category.imagePath}}" class="img-fluid" />
 						</div>
 					</div>
 				</div>
@@ -79,6 +79,7 @@
 	<script type="text/javascript">
 		MAX_FILE_SIZE = 102400; // 100KB
 		moduleURL = "[[@{/categories}]]";
+		
 		function checkUnique(form) {
 			catId = $("#id").val();
 			catName = $("#name").val();

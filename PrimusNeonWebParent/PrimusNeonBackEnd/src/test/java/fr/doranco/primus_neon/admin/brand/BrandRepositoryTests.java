@@ -25,7 +25,7 @@ public class BrandRepositoryTests {
 	@Test
 	public void testCreateBrand1() {
 
-		Category driver = new category(39);
+		Category driver = new Category(39);
 		Brand noxion = new Brand("Noxion");
 		noxion.getCategories().add(driver);
 

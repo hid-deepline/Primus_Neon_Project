@@ -198,6 +198,7 @@ public class CategoryService {
 	
 	private SortedSet<Category> sortSubCategories(Set<Category> children, String sortDir) {
 		SortedSet<Category> sortedChildren = new TreeSet<>(new Comparator<Category>() {
+			
 			@Override
 			public int compare(Category cat1, Category cat2) {
 				if (sortDir.equals("asc")) {

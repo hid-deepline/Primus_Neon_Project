@@ -48,7 +48,7 @@
 							class="form-control" th:field="*{password}" minlength="12"
 							maxlength="30"
 							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{12,}"
-							oninput="checkPasswordMatch(document.get.ElementById('confirmPassword'))" />
+							oninput="checkPasswordMatch(document.get.ElementById('confirmPassword'))"  />
 					</div>
 				</div>
 				<div class="row mb-3">
@@ -58,7 +58,7 @@
 						<input type="password" id="confirmPassword" class="form-control"
 							minlength="12" maxlength="30"
 							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{12,}"
-							title="Doit contenir minuscules, majuscules, chiffres et caractères spéciaux, 12+ caractères."
+							title="Les mots de passe doivent être identique."
 							oninput="checkPasswordMatch(this)" />
 					</div>
 				</div>
@@ -139,6 +139,7 @@
 		}
 		
 	</script>
+	<script th:src="@{/js/confirm_password.js}"></script>
 	<script th:src="@{/js/common_form.js}"></script>
 </body>
 </html>
