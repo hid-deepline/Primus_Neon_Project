@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="~{fragments :: page_head('Accueil - Administration de Primus Neon')}"></head>
+<body>
+	<div class="container-fluid">
+		<div th:replace="~{navigation :: menu}"></div>
+		<div>
+			<h2>Gestion des utilisateurs</h2>
+			<a th:href="@{/users/new}"
+				class="fa-solid fa-user-plus fa-2x icon-dark m-2"></a>
+		</div>
+		
+		<div th:replace="~{fragments :: search_form_and_message}"></div>
+		
+		<div class="full-details">
+			<table
+				class="table table-bordered table-striped table-hover table-responsive">
+				<thead class="table-dark">
+					<tr>
+						<th class="hideable-column">
+						<th
+							th:replace="~{fragments :: column_link('/users', 'id', 'ID utilisateur', 'tag')}" />
+						</th>
+						<th>Photo</th>
+						<th class="hideable-column">
+						<th
+							th:replace="~{fragments :: column_link('/users', 'email', 'E-mail', 'tag')}" />
+						</th>
+						<th
+							th:replace="~{fragments :: column_link('/users', 'firstName', 'Prénom', 'none')}" />
+						<th
+							th:replace="~{fragments :: column_link('/users', 'lastName', 'Nom', 'none')}" />
+
+						<th>Roles</th>
+						<th
+							th:replace="~{fragments :: column_link('/users', 'enabled', 'Activé', 'none')}" />
+
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user : ${listUsers}">
+						<td class="hideable-column">[[${user.id}]]</td>
+						<td>
+							<div th:replace="~{fragments :: user_photos}"></div>
+						</td>
+						<td class="hideable-column">[[${user.email}]]</td>
+						<td>[[${user.firstName}]]</td>
+						<td>[[${user.lastName}]]</td>
+						<td>[[${user.roles}]]</td>
+						<td>
+							<div
+								th:replace="~{fragments :: status(${user.enabled}, 'cet utilisateur', '/users/' + ${user.id})}"></div>
+						</td>
+
+						<td>
+							<div
+								th:replace="~{fragments :: edit('cet utilisateur', '/users/edit/' + ${user.id})}"></div>
+							&nbsp;&nbsp;
+							<div
+								th:replace="~{fragments :: delete('cet utilisateur', ${user.id}, '/users/delete/' + ${user.id}, true)}"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="less-details">
+			<div th:each="user : ${listUsers}" class="row m-1">
+				<div class="col-4">
+					<div th:replace="~{fragments :: user_photos}"></div>
+				</div>
+				<div class="col-8">
+					<div>[[${user.fullName}]]</div>
+					<div>[[${user.roles}]]</div>
+					<div class="mt-2">
+						<div
+							th:replace="~{fragments :: status(${user.enabled}, 'utilisateur', '/users/' + ${user.id})}"></div>
+						&nbsp;
+						<div
+							th:replace="~{fragments :: edit('utilisateur', '/users/edit/' + ${user.id})}"></div>
+						&nbsp;
+						<div
+							th:replace="~{fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)}"></div>
+					</div>
+				</div>
+				<div>&nbsp;</div>
+			</div>
+		</div>
+
+		<div th:replace="~{modal_fragments :: confirm_modal}"></div>
+
+		<div th:replace="~{fragments :: pagination('users')}"></div>
+
+		<div th:replace="~{fragments :: footer}"></div>
+		
+	</div>
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					$(".link-delete")
+							.on(
+									"click",
+									function(e) {
+										e.preventDefault();
+										link = $(this);
+										//alert($(this).attr("href"));
+										userId = link.attr("userId");
+										$("#yesButton").attr("href",
+												link.attr("href"));
+										$("#confirText").text(
+												"Êtes-vous sûr de vouloir supprimer cet ID utilisateur "
+														+ userId);
+										$("#confirmModal").modal("show");
+									});
+				});
+
+		function clearFilter() {
+			window.location = "[[@{/users}]]";
+
+		};
+	</script>
+</body>
+</html>

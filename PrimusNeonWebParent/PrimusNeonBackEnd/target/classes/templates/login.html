@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+<title>Connexion - Primus Neon</title>
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+
+</head>
+<body>
+	<div class="container-fluid text-center">
+
+
+
+
+		<div>
+			<img alt="logo Primus Neon"
+				th:src="@{/images/Big Logo Primus Neon.png}">
+			<img alt="label Primus Neon"
+                th:src="@{/images/Big Label Primus Neon.png}">
+		</div>
+
+		<form th:action="@{/login}" method="post"
+			style="max-width: 350px; margin: 0 auto">
+			
+			<div th:if="${param.error}">
+				<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+			</div>
+				
+			<div th:if="${param.logout}">
+			    <p class="text-warning">Vous avez été déconnecté</p>
+			</div>
+			
+			<div class="border border-secondary rounded p-3">
+				<p>Accès au Panneau de Contrôle Primus Neon</p>
+				<p>
+					<input type="email" class="form-control" name="email"
+						placeholder="E-mail" required>
+				</p>
+				<p>
+					<input type="password" class="form-control"
+						name="password" placeholder="Mot de passe" required>
+				</p>
+				<p>
+					<input type="checkbox" name="remember-me"> <label
+						for="remember-me">Se souvenir de moi</label>
+				</p>
+				<p>
+					<input type="submit" class="btn btn-primary" value="Connexion">
+				</p>
+				
+			</div>
+		</form>
+
+		<div th:replace="~{fragments :: footer}"></div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/extras/spring-security6">
+<head th:replace="~{fragments :: page_head('Erreur - Administration de Primus Neon')}"></head>
+<body>
+	<div class="container-fluid">
+		<div th:replace="~{navigation :: menu}"></div>
+
+		<div class="m-3">
+			<h2>Désolé, la page demandé n’a pas pu être trouvée</h2>
+		</div>
+
+		<div th:replace="~{fragments :: footer}"></div>
+	</div>
+</body>
+</html>
