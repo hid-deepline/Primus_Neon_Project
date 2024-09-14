@@ -33,7 +33,7 @@ Clonez le dépôt Git en utilisant la commande suivante :
 text
 =======
 git clone 
->>>>>>> 3aeea1a9c4adcf1ad1a4228c79fe205b86339006
+
 Accédez au répertoire du projet :
 
 text
