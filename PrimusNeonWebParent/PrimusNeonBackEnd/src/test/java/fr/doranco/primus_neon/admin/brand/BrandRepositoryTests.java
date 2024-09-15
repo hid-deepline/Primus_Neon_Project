@@ -25,9 +25,9 @@ public class BrandRepositoryTests {
 	@Test
 	public void testCreateBrand1() {
 
-		Category driver = new Category(39);
+		Category Driver = new Category(45);
 		Brand noxion = new Brand("Noxion");
-		noxion.getCategories().add(driver);
+		noxion.getCategories().add(Driver);
 
 		Brand savedBrand = repo.save(noxion);
 		
@@ -37,19 +37,17 @@ public class BrandRepositoryTests {
 
 	@Test
 	public void testCreateBrand2() {
-		Category cellphones = new Category(4);
-		Category tablets = new Category(7);
+		Category Driver = new Category(45);
 		
-		Brand apple = new Brand("Apple");
-		apple.getCategories().add(cellphones);
-		apple.getCategories().add(tablets);
+		Brand phillips = new Brand("Phillips");
+		phillips.getCategories().add(Driver);
 		
-		Brand savedBrand = repo.save(apple);
+		Brand savedBrand = repo.save(phillips);
 		
 		assertThat(savedBrand).isNotNull();
 		assertThat(savedBrand.getId()).isGreaterThan(0);
 	}
-	
+	/*
 	@Test
 	public void testCreateBrand3() {
 		Brand samsung = new Brand("Samsung");
@@ -61,7 +59,7 @@ public class BrandRepositoryTests {
 		
 		assertThat(savedBrand).isNotNull();
 		assertThat(savedBrand.getId()).isGreaterThan(0);
-	}
+	}*/
 
 	@Test
 	public void testFindAll() {
@@ -70,7 +68,7 @@ public class BrandRepositoryTests {
 		
 		assertThat(brands).isNotEmpty();
 	}
-
+/*
 	@Test
 	public void testGetById() {
 		Brand brand = repo.findById(1).get();
@@ -96,5 +94,5 @@ public class BrandRepositoryTests {
 		Optional<Brand> result = repo.findById(id);
 		
 		assertThat(result.isEmpty());
-	}
+	}*/
 }

@@ -54,7 +54,6 @@ public class CategoryController {
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("startCount", startCount);
 		model.addAttribute("endCount", endCount);		
-		
 		model.addAttribute("listCategories", listCategories);
 		model.addAttribute("reverseSortDir", reverseSortDir);
 		model.addAttribute("moduleURL", "/categories");
@@ -75,7 +74,7 @@ public class CategoryController {
 	}
 
 	@PostMapping("/categories/save")
-	public String saveCategory(Category category, @RequestParam("fileImage") MultipartFile multipartFile,
+	public String saveCategory(Category category, @RequestParam(name = "fileImage") MultipartFile multipartFile,
 			RedirectAttributes ra) throws IOException {
 
 		if (!multipartFile.isEmpty()) {

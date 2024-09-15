@@ -188,13 +188,13 @@ public class Category {
 	public String toString() {
 		return this.name;
 	}
-
+/*
 	public String getAllParentIDs() {
 		return allParentIDs;
 	}
 
 	public void setAllParentIDs(String allParentIDs) {
 		this.allParentIDs = allParentIDs;
-	}
+	}*/
 	
 }

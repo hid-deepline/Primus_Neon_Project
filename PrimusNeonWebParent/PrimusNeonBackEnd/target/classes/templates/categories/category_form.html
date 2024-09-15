@@ -12,7 +12,7 @@
 		<form th:action="@{/categories/save}" method="post"
 			style="max-width: 500px; margin: 0 auto"
 			enctype="multipart/form-data" 
-			
+			onsubmit="return checkUnique(this)"
 			th:object="${category}">
 			<input type="hidden" th:field="*{id}" />
 			<div class="border border-secondary rounded p-3">
@@ -76,25 +76,27 @@
 
 		<div th:replace="~{fragments :: footer}"></div>
 	</div>
+	<script th:src="@{/js/common_form.js}"></script>
 	<script type="text/javascript">
 		MAX_FILE_SIZE = 102400; // 100KB
 		moduleURL = "[[@{/categories}]]";
 		
 		function checkUnique(form) {
+            url = "[[@{/categories/check_unique}]]";
 			catId = $("#id").val();
 			catName = $("#name").val();
 			catAlias = $("#alias").val();
 			
 			csrfValue = $("input[name='_csrf']").val();
 			
-			url = "[[@{/categories/check_unique}]]";
+			
 			
 			params = {id: catId, name: catName, alias: catAlias, _csrf: csrfValue};
 			
 			$.post(url, params, function(response) {
 				if (response == "OK") {
 					form.submit();
-					} else if(response == "Non dupliqué") {
+					} else if(response == "Dupliqué") {
 						showWarningModal("Ce nom de catégorie est déjà utilisé " + catName);
 					} else if(response == "Alias dupliqué") {
 					showWarningModal("Cet alias de catégorie est déjà utilisé " + catAlias);
@@ -110,6 +112,5 @@
 			}
 		
 	</script>
-	<script th:src="@{/js/common_form.js}"></script>
 </body>
 </html>

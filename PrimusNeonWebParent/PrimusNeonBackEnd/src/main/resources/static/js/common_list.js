@@ -8,5 +8,5 @@ function showDeleteConfirmModal(link, entityName) {
 	$("#yesButton").attr("href", link.attr("href"));
 	$("#confirmText").text("Êtes-vous sûr de vouloir supprimer cette "
 		+ entityName + " ID " + entityId + "?");
-	$("#confirmModal").modal();
+	$("#confirmModal").modal("show");
 }

@@ -97,9 +97,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		$(document).ready(function () {
 			$(".link-delete").on("click", function (e) {
 				e.preventDefault();
-				showDeleteConfirmModal($(this), 'category');
+				showDeleteConfirmModal($(this), 'categorie');
 			});
 		});
+		
+		function clearFilter() {
+			window.location = "[[@{/categories}]]";
+
+		};
 	</script>
 </body>
 </html>

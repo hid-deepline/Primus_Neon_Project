@@ -96,24 +96,13 @@
 		<div th:replace="~{fragments :: footer}"></div>
 		
 	</div>
+	<script th:src="@{/js/common_list.js}"></script>
 	<script type="text/javascript">
-		$(document).ready(
-				function() {
-					$(".link-delete")
-							.on(
-									"click",
-									function(e) {
-										e.preventDefault();
-										link = $(this);
-										//alert($(this).attr("href"));
-										userId = link.attr("userId");
-										$("#yesButton").attr("href",
-												link.attr("href"));
-										$("#confirText").text(
-												"Êtes-vous sûr de vouloir supprimer cet ID utilisateur "
-														+ userId);
-										$("#confirmModal").modal("show");
-									});
+				$(document).ready(function () {
+					$(".link-delete").on("click", function (e) {
+						e.preventDefault();
+						showDeleteConfirmModal($(this), 'user');
+					});
 				});
 
 		function clearFilter() {

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 
 import fr.doranco.primus_neon.common.entity.Category;
+import fr.doranco.primus_neon.common.entity.User;
 
 @DataJpaTest(showSql = false)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -95,6 +96,14 @@ public class CategoryRepositoryTests {
 	public void testListRootCategories() {
 		List<Category> rootCategories = repo.findRootCategories(Sort.by("name").ascending());
 		rootCategories.forEach(cat -> System.out.println(cat.getName()));
+	}
+	
+	@Test
+	public void testGetCategoryById() {
+
+		Category categoryNeon = repo.findById(1).get();
+		System.out.println(categoryNeon);
+		assertThat(categoryNeon).isNotNull();
 	}
 	
 	@Test
