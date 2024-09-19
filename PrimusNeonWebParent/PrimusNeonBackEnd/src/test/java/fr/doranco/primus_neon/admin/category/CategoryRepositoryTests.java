@@ -13,7 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 
 import fr.doranco.primus_neon.common.entity.Category;
-import fr.doranco.primus_neon.common.entity.User;
 
 @DataJpaTest(showSql = false)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

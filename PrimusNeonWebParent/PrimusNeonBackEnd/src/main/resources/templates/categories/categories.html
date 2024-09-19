@@ -7,7 +7,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	<div class="container-fluid">
 		<div th:replace="~{navigation :: menu}"></div>
 		<h2>Gestion des catégories</h2>
-
+<div>
 		<a th:href="@{/categories/new}"
 			class="fas fa-folder-plus fa-2x icon-dark mr-2"></a> <a
 			th:href="@{/categories/export/csv}"
@@ -89,7 +89,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 	<div th:replace="~{fragments :: footer}"></div>
 
-	
+	</div>
 	<script th:src="@{/js/common_list.js}"></script>
 	<script type="text/javascript">
 		moduleURL = "[[@{/categories}]]";
