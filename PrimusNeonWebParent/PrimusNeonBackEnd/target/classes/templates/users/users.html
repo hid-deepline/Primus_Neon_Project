@@ -8,7 +8,13 @@
 		<div>
 			<h2>Gestion des utilisateurs</h2>
 			<a th:href="@{/users/new}"
-				class="fa-solid fa-user-plus fa-2x icon-dark m-2"></a>
+				class="fa-solid fa-user-plus fa-2x icon-dark m-2"></a> <a
+				th:href="@{/users/export/csv}"
+				class="fas fa-file-csv fa-2x icon-dark mr-2"></a> <a
+				th:href="@{/users/export/excel}"
+				class="fas fa-file-excel fa-2x icon-dark mr-2"></a> <a
+				th:href="@{/users/export/pdf}"
+				class="fas fa-file-pdf fa-2x icon-dark"></a>
 		</div>
 		
 		<div th:replace="~{fragments :: search_form_and_message}"></div>
@@ -34,7 +40,7 @@
 
 						<th>Roles</th>
 						<th
-							th:replace="~{fragments :: column_link('/users', 'enabled', 'Activé', 'none')}" />
+							th:replace="~{fragments :: column_link('/users', 'enabled', 'Actif', 'none')}" />
 
 						<th></th>
 					</tr>
@@ -82,16 +88,16 @@
 							th:replace="~{fragments :: edit('utilisateur', '/users/edit/' + ${user.id})}"></div>
 						&nbsp;
 						<div
-							th:replace="~{fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)}"></div>
+							th:replace="~{fragments :: delete('utilisateur', ${user.id}, '/users/delete/' + ${user.id}, true)}"></div>
 					</div>
 				</div>
 				<div>&nbsp;</div>
 			</div>
 		</div>
+		
+		<div th:replace="~{fragments :: pagination('Utilisateurs')}"></div>
 
 		<div th:replace="~{modal_fragments :: confirm_modal}"></div>
-
-		<div th:replace="~{fragments :: pagination('users')}"></div>
 
 		<div th:replace="~{fragments :: footer}"></div>
 		
@@ -101,7 +107,7 @@
 				$(document).ready(function () {
 					$(".link-delete").on("click", function (e) {
 						e.preventDefault();
-						showDeleteConfirmModal($(this), 'user');
+						showDeleteConfirmModal($(this), 'utilisateur');
 					});
 				});
 

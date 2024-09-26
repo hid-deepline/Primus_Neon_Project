@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org">
 <head
 	th:replace="~{fragments :: page_head('Catégories - Administration de Primus Neon')}"></head>
 <body>
@@ -22,10 +21,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			<thead class="table-dark">
 				<tr>
 					<th>ID</th>
-					<th>Image categorie</th>
-					<th th:replace="~{fragments :: column_link('/categories', 'name', 'Nom categorie', 'none')}" ></th>
+					<th>Image catégorie</th>
+					<th th:replace="~{fragments :: column_link('/categories', 'name', 'Nom catégorie', 'none')}" ></th>
 					<th class="hideable-column">Alias</th>
-					<th>Activé</th>
+					<th>Active</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -38,14 +37,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 						<td class="hideable-column">[[${cat.alias}]]</td>
 						<td>
 							<div
-								th:replace="~{fragments :: status(${cat.enabled}, 'cette categorie', '/categories/' + ${cat.id})}"></div>
+								th:replace="~{fragments :: status(${cat.enabled}, 'cette catégorie', '/categories/' + ${cat.id})}"></div>
 						</td>
 						<td>
 							<div
-								th:replace="~{fragments :: edit('cette categorie', '/categories/edit/' + ${cat.id})}"></div>
+								th:replace="~{fragments :: edit('cette catégorie', '/categories/edit/' + ${cat.id})}"></div>
 							&nbsp;
 							<div
-								th:replace="~{fragments :: delete('cette categorie', ${cat.id}, '/categories/delete/' + ${cat.id}, ${!cat.hasChildren})}"></div>
+								th:replace="~{fragments :: delete('cette catégorie', ${cat.id}, '/categories/delete/' + ${cat.id}, ${!cat.hasChildren})}"></div>
 						</td>
 					</tr>
 				</tbody>
@@ -62,13 +61,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 					<div>[[${cat.name}]]</div>
 					<div class="mt-2">
 						<div
-							th:replace="~{fragments :: status(${cat.enabled}, 'cette categorie', '/categories/' + ${cat.id})}"></div>
+							th:replace="~{fragments :: status(${cat.enabled}, 'cette catégorie', '/categories/' + ${cat.id})}"></div>
 						&nbsp;
 						<div
-							th:replace="~{fragments :: edit('cette categorie', '/categories/edit/' + ${cat.id})}" ></div>
+							th:replace="~{fragments :: edit('cette catégorie', '/categories/edit/' + ${cat.id})}" ></div>
 						&nbsp;
 						<div
-							th:replace="~{fragments :: delete('cette categorie', ${cat.id}, '/categories/delete/' + ${cat.id}, ${!cat.hasChildren})}"></div>
+							th:replace="~{fragments :: delete('cette catégorie', ${cat.id}, '/categories/delete/' + ${cat.id}, ${!cat.hasChildren})}"></div>
 					</div>
 				</div>
 				<div>&nbsp;</div>
@@ -76,13 +75,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		</div>
 
 		<div th:if="${keyword != null}" class="text-center">
-			<span>Search result does not show categories in hierarchical
-				form</span>
-			<div th:replace="~{fragments :: pagination('categories')}"></div>
+			<span>Le résultat de la recherche n’affiche pas les catégories dans la forme hiérarchique</span>
+			<div th:replace="~{fragments :: pagination('Catégories')}"></div>
 		</div>
 
 		<th:block th:unless="${keyword != null}">
-			<div th:replace="~{fragments :: pagination('top-level categories')}"></div>
+			<div th:replace="~{fragments :: pagination('Catégories hiérarchiques ')}"></div>
 	
 
 	<div th:replace="~{modal_fragments :: confirm_modal}"></div>
@@ -97,7 +95,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		$(document).ready(function () {
 			$(".link-delete").on("click", function (e) {
 				e.preventDefault();
-				showDeleteConfirmModal($(this), 'categorie');
+				showDeleteConfirmModal($(this), 'catégorie');
 			});
 		});
 		

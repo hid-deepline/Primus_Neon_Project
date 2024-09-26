@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.doranco.primus_neon.admin.FileUploadUtil;
 import fr.doranco.primus_neon.common.entity.Category;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class CategoryController {
@@ -141,5 +142,12 @@ public class CategoryController {
 	  	return "redirect:/categories";
 	 
 	  }
+	 
+	 @GetMapping("/categories/export/csv")
+		public void exportToCSV(HttpServletResponse response) throws IOException {
+			List<Category> listCategories = service.listCategoriesUsedInForm();
+			CategoryCsvExporter exporter = new CategoryCsvExporter();
+			exporter.export(listCategories, response);
+		}
 
 }

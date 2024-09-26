@@ -13,8 +13,6 @@ public class PrimusNeonUserDetailsService implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepo;
 	
-	
-	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 

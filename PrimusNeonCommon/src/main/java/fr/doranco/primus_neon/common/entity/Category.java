@@ -23,10 +23,10 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 128, nullable = false, unique = true)
+	@Column(length = 128, nullable = false, unique = true )
 	private String name;
 	
-	@Column(length = 64, nullable = false, unique = true)
+	@Column(length = 64, nullable = false, unique = true )
 	private String alias;
 	
 	@Column(length = 128, nullable = false)
@@ -35,8 +35,7 @@ public class Category {
 	
 	private boolean enabled;
 	
-	@Column(name = "all_parent_ids", length = 256, nullable = true)
-	private String allParentIDs;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "parent_id")
@@ -167,7 +166,8 @@ public class Category {
 
 	@Transient
 	public String getImagePath() {
-		if (this.id == null) return "/images/image-thumbnail.png";
+		if (this.id == null || "".equals(this.image)) 
+			return "/images/image-thumbnail.png";
 		
 		return "/category-images/" + this.id + "/" + this.image;
 		
@@ -188,13 +188,6 @@ public class Category {
 	public String toString() {
 		return this.name;
 	}
-/*
-	public String getAllParentIDs() {
-		return allParentIDs;
-	}
-
-	public void setAllParentIDs(String allParentIDs) {
-		this.allParentIDs = allParentIDs;
-	}*/
+	
 	
 }

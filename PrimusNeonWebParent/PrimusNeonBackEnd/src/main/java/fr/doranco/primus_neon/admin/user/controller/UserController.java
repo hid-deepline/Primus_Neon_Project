@@ -18,8 +18,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fr.doranco.primus_neon.admin.FileUploadUtil;
 import fr.doranco.primus_neon.admin.user.UserNotFoundException;
 import fr.doranco.primus_neon.admin.user.UserService;
+import fr.doranco.primus_neon.admin.user.export.UserCsvExporter;
+import fr.doranco.primus_neon.admin.user.export.UserExcelExporter;
+import fr.doranco.primus_neon.admin.user.export.UserPdfExporter;
 import fr.doranco.primus_neon.common.entity.Role;
 import fr.doranco.primus_neon.common.entity.User;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class UserController {
@@ -32,7 +36,7 @@ public class UserController {
 	@GetMapping("/users")
 	public String listFirstPage(Model model) {
 
-		return listByPage(1, model, "firstName", "asc", null);
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/users/page/{pageNum}")
@@ -130,8 +134,6 @@ public class UserController {
 			redirectAttributes.addFlashAttribute("message", ex.getMessage());
 			return defaultRedirectURL;
 		}
-
-		
 	}
 
 	@GetMapping("/users/delete/{id}")
@@ -147,7 +149,6 @@ public class UserController {
 		}
 
 		return defaultRedirectURL;
-
 	}
 
 	@GetMapping("/users/{id}/enabled/{status}")
@@ -159,7 +160,27 @@ public class UserController {
 		String message = "L'ID utilisateur " + id + " a été " + status;
 		redirectAttributes.addFlashAttribute("message", message);
 
-		return "redirect:/users";
+		return defaultRedirectURL;
 	}
 
+	@GetMapping("/users/export/csv")
+	public void exportToCSV(HttpServletResponse response) throws IOException {
+		List<User> listUsers = service.listAll();
+		UserCsvExporter exporter = new UserCsvExporter();
+		exporter.export(listUsers, response);
+	}
+	
+	@GetMapping("/users/export/excel")
+	public void exportToExcel(HttpServletResponse response) throws IOException {
+		List<User> listUsers = service.listAll();
+		UserExcelExporter exporter = new UserExcelExporter();
+		exporter.export(listUsers, response);
+	}
+	
+	@GetMapping("/users/export/pdf")
+	public void exportToPdf(HttpServletResponse response) throws IOException {
+		List<User> listUsers = service.listAll();
+		UserPdfExporter exporter = new UserPdfExporter();
+		exporter.export(listUsers, response);
+	}
 }

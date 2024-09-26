@@ -21,7 +21,7 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class CategoryService {
-	public static final int ROOT_CATEGORIES_PER_PAGE = 4;
+	public static final int ROOT_CATEGORIES_PER_PAGE = 3;
 
 	@Autowired
 	private CategoryRepository repo;
@@ -103,12 +103,6 @@ public class CategoryService {
 	}
 	
 	public Category save(Category category) {
-		/*Category parent = category.getParent();
-		if (parent != null) {
-			String allParentIds = parent.getAllParentIDs() == null ? "-" : parent.getAllParentIDs();
-			allParentIds += String.valueOf(parent.getId()) + "-";
-			category.setAllParentIDs(allParentIds);
-		}*/
 		
 		return repo.save(category);
 	}

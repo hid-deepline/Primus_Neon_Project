@@ -16,8 +16,6 @@ public class PrimusNeonUserDetails implements UserDetails {
 
 	private User user;
 	
-	
-	
 	public PrimusNeonUserDetails(User user) {
 		this.user = user;
 	}

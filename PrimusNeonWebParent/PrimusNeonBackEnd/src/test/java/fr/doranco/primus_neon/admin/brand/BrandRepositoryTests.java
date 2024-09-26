@@ -25,9 +25,9 @@ public class BrandRepositoryTests {
 	@Test
 	public void testCreateBrand1() {
 
-		Category Driver = new Category(45);
+		Category mars = new Category(15);
 		Brand noxion = new Brand("Noxion");
-		noxion.getCategories().add(Driver);
+		noxion.getCategories().add(mars);
 
 		Brand savedBrand = repo.save(noxion);
 		
@@ -37,29 +37,17 @@ public class BrandRepositoryTests {
 
 	@Test
 	public void testCreateBrand2() {
-		Category Driver = new Category(45);
+		Category mars = new Category(15);
 		
 		Brand phillips = new Brand("Phillips");
-		phillips.getCategories().add(Driver);
+		phillips.getCategories().add(mars);
 		
 		Brand savedBrand = repo.save(phillips);
 		
 		assertThat(savedBrand).isNotNull();
 		assertThat(savedBrand.getId()).isGreaterThan(0);
 	}
-	/*
-	@Test
-	public void testCreateBrand3() {
-		Brand samsung = new Brand("Samsung");
-		
-		samsung.getCategories().add(new Category(29));	// category memory
-		samsung.getCategories().add(new Category(24));	// category internal hard drive
-		
-		Brand savedBrand = repo.save(samsung);
-		
-		assertThat(savedBrand).isNotNull();
-		assertThat(savedBrand.getId()).isGreaterThan(0);
-	}*/
+	
 
 	@Test
 	public void testFindAll() {
@@ -73,12 +61,12 @@ public class BrandRepositoryTests {
 	public void testGetById() {
 		Brand brand = repo.findById(1).get();
 		
-		assertThat(brand.getName()).isEqualTo("Acer");
+		assertThat(brand.getName()).isEqualTo("xbox");
 	}
 
 	@Test
 	public void testUpdateName() {
-		String newName = "Samsung Electronics";
+		String newName = "cars";
 		Brand samsung = repo.findById(3).get();
 		samsung.setName(newName);
 		
@@ -88,7 +76,7 @@ public class BrandRepositoryTests {
 
 	@Test
 	public void testDelete() {
-		Integer id = 2;
+		Integer id = 14;
 		repo.deleteById(id);
 		
 		Optional<Brand> result = repo.findById(id);

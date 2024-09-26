@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org">
 <head
 	th:replace="~{fragments :: page_head('Marques - Administration de Primus Neon')}"></head>
 <body>
@@ -36,7 +35,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 							class="img-fluid" /></td>
 						<td>[[${brand.name}]]</td>
 						<td><th:block th:each="cat : ${brand.categories}">
-								<span class="badge badge-secondary" th:text="${cat.name}"></span>
+								<span class="badge badge-bg-secondary"  th:text="${cat.name}"></span>
 							</th:block></td>
 
 						<td>
@@ -44,7 +43,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 								th:replace="~{fragments :: edit('cette marque', '/brands/edit/' + ${brand.id})}"></div>
 							&nbsp;
 							<div
-								th:replace="~{fragments :: delete('cette marquee', ${brand.id}, '/brands/delete/' + ${brand.id}, true)}"></div>
+								th:replace="~{fragments :: delete('cette marque', ${brand.id}, '/brands/delete/' + ${brand.id}, true)}"></div>
 						</td>
 					</tr>
 				</tbody>
@@ -71,12 +70,15 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			</div>
 		</div>
 
-		<div th:replace="~{fragments :: pagination('brands')}"></div>
+		
 		
 		<div th:replace="~{modal_fragments :: confirm_modal}"></div>
+		
+		<div th:replace="~{fragments :: pagination('brands')}"></div>
 
 		<div th:replace="~{fragments :: footer}"></div>
 	</div>
+	
 	<script th:src="@{/js/common_list.js}"></script>
 	<script type="text/javascript">
 		moduleURL = "[[@{/brands}]]";
@@ -84,9 +86,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		$(document).ready(function () {
 			$(".link-delete").on("click", function (e) {
 				e.preventDefault();
-				showDeleteConfirmModal($(this), 'brand');
+				showDeleteConfirmModal($(this), 'marque');
 			});
 		});
+		
+		function clearFilter() {
+			window.location = "[[@{/brands}]]";
+
+		};
 	</script>
 </body>
 </html>
