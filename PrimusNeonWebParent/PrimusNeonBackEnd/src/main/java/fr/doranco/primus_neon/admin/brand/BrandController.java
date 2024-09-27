@@ -29,20 +29,23 @@ public class BrandController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
 
 	@GetMapping("/brands")
 	public String listAll(Model model) {
 		List<Brand> listBrands = brandService.listAll();
 		model.addAttribute("listBrands", listBrands);
 
-		return "brands/brands";
+		return "redirect:/brands/page/1?sortField=name&sortDir=asc";
+		//return listByPage(1, model, "name", "asc", null);
 	}
 	
 	@GetMapping("/brands/page/{pageNum}")
-	public String listByPage(@PathVariable int pageNum, Model model,  
+	public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model,  
 			String sortField, String sortDir, String keyword) {
 		
-		
+		System.out.println("Sort Field: " + sortField);
+		System.out.println("Sort Order: " + sortDir);
 		Page<Brand> page = brandService.listByPage(pageNum, sortField, sortDir, keyword);
 		List<Brand> listBrands = page.getContent();
 		
@@ -109,6 +112,7 @@ public class BrandController {
 			List<Category> listCategories = categoryService.listCategoriesUsedInForm();
 			
 			model.addAttribute("brand", brand);
+			System.out.println("categoriers in this brand: " + brand.getCategories().size());
 			model.addAttribute("listCategories", listCategories);
 			model.addAttribute("pageTitle", "Modifier la marque (ID : " + id + ")");
 			

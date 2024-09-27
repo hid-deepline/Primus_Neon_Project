@@ -35,7 +35,7 @@
 							class="img-fluid" /></td>
 						<td>[[${brand.name}]]</td>
 						<td><th:block th:each="cat : ${brand.categories}">
-								<span class="badge badge-bg-secondary"  th:text="${cat.name}"></span>
+								<span class="badge text-bg-secondary"  th:text="${cat.name}"></span>
 							</th:block></td>
 
 						<td>
@@ -70,11 +70,9 @@
 			</div>
 		</div>
 
-		
+		<div th:replace="~{fragments :: pagination('Marques')}"></div>
 		
 		<div th:replace="~{modal_fragments :: confirm_modal}"></div>
-		
-		<div th:replace="~{fragments :: pagination('brands')}"></div>
 
 		<div th:replace="~{fragments :: footer}"></div>
 	</div>
