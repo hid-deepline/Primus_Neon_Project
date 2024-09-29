@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="content" th:remove="tag">
+	<div class="row mb-3">
+		<label class="col-sm-2 col-form-label">Nom Produit :</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" th:field="*{name}"
+				required minlength="3" maxlength="256" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-2 col-form-label">Alias :</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" th:field="*{alias}"
+				placeholder="Par défaut, le nom du produit (les espaces sont remplacés par des tirets)"
+					required minlength="3" maxlength="256" />
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label class="col-sm-2 col-form-label">Marque :</label>
+		<div class="col-sm-6">
+			<select class="form-control" th:field="*{brand}">
+			    <option value="0">Sélectionnez une marque si applicable</option>
+			    <th:block th:each="brand : ${listBrands}">
+					<option th:value="${brand.id}">[[${brand.name}]]</option>
+				</th:block>
+             </select>
+		</div>
+	</div>
+	
+</div>
+</body>
+
+</html>

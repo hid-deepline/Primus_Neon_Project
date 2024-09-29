@@ -10,7 +10,7 @@
 		</div>
 		
 		<form th:action="@{/categories/save}" method="post"
-			style="max-width: 500px; margin: 0 auto"
+			style="max-width: 515px; margin: 0 auto"
 			enctype="multipart/form-data" 
 			onsubmit="return checkUnique(this)"
 			th:object="${category}">
@@ -35,7 +35,7 @@
 					<label class="col-sm-4 col-form-label">Catégorie mère :</label>
 					<div class="col-sm-8">
 						<select class="form-control" th:field="*{parent}">
-							<option value="0">Aucune</option>
+							<option value="0">Sélectionnez une catégogie si applicable</option>
 							<th:block th:each="cat : ${listCategories}">
 								<option th:value="${cat.id}">[[${cat.name}]]</option>
 							</th:block>

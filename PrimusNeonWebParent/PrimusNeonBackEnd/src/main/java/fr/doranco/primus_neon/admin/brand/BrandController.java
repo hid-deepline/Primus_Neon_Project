@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -32,9 +33,7 @@ public class BrandController {
 	
 
 	@GetMapping("/brands")
-	public String listAll(Model model) {
-		List<Brand> listBrands = brandService.listAll();
-		model.addAttribute("listBrands", listBrands);
+	public String listFirstPage(Model model) {
 
 		return "redirect:/brands/page/1?sortField=name&sortDir=asc";
 		//return listByPage(1, model, "name", "asc", null);
@@ -42,7 +41,7 @@ public class BrandController {
 	
 	@GetMapping("/brands/page/{pageNum}")
 	public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model,  
-			String sortField, String sortDir, String keyword) {
+			 String sortField, String sortDir, String keyword) {
 		
 		System.out.println("Sort Field: " + sortField);
 		System.out.println("Sort Order: " + sortDir);

@@ -21,3 +21,8 @@
 	div.less-details {display: none; }
 	th, td .hideable-column {display: table-cell; }
 }
+
+.btn-custom {
+  background-color: #00CED1 ;
+  color: #fff;
+}
