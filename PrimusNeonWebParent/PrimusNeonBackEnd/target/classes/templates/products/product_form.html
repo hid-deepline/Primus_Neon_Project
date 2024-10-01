@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments :: page_head(${pageTitle})}">
+<head>
+	<head th:replace="~{fragments :: page_head(${pageTitle}, 'none')}">
+	
+</head>
 <body>
 	<div class="container-fluid">
 		<div th:replace="~{navigation :: menu}"></div>
@@ -34,6 +37,11 @@
 							data-bs-target="#details" type="button" role="tab"
 							>Détails</button>
 					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" data-bs-toggle="tab"
+							data-bs-target="#shipping" type="button" role="tab"
+							>Expédition</button>
+					</li>
 				</ul>
 
 				<!-- Tab panes -->
@@ -41,12 +49,16 @@
 					<div class="tab-pane active p-3" id="overview" role="tabpanel">
 						<div th:replace="~{products/product_overview :: content}"></div>
 					</div>
-					<div class="tab-pane" id="description" role="tabpanel"
-						>Description</div>
+					<div class="tab-pane" id="description" role="tabpanel">
+						<div th:replace="~{products/product_description :: content}"></div>
+					</div>
 					<div class="tab-pane" id="images" role="tabpanel"
 						>Images</div>
 					<div class="tab-pane" id="details" role="tabpanel"
 						>Détails</div>
+					<div class="tab-pane p-3" id="shipping" role="tabpanel">
+						<div th:replace="~{products/product_shipping :: content}"></div>
+					</div>
 				</div>
 				<div class="text-center">
 					<input type="submit" value="Sauvegarder"
@@ -71,6 +83,10 @@
 		dropdownCategories = $("#category");
 		
 		$(document).ready(function () {
+
+			$("#shortDescription").richText();
+			$("#fullDescription").richText();
+			
 				dropdownBrands.change(function () {
                 	dropdownCategories.empty();
 					getCategories();
@@ -91,5 +107,6 @@
 		}
 	</script>
 	<script th:src="@{/js/common_form.js}"></script>
+	
 </body>
 </html>

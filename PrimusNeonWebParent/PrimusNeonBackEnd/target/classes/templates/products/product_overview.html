@@ -23,7 +23,7 @@
 		<label class="col-sm-2 col-form-label">Marque :</label>
 		<div class="col-sm-6">
 			<select class="form-control" th:field="*{brand}">
-			    <option value="0">Sélectionnez une marque ou "aucune" (pour avoir l'ensemble des catégories)</option>
+			    <option value="0">Sélectionnez une marque ou "Aucune" (pour voir les catégories disponibles)</option>
 			    <th:block th:each="brand : ${listBrands}">
 					<option th:value="${brand.id}">[[${brand.name}]]</option>
 				</th:block>

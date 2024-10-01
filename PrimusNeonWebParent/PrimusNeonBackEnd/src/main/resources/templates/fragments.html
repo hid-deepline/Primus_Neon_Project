@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:fragment="page_head(title)" th:remove="${remove}">
+<head th:fragment="page_head(title, remove)" th:remove="${remove}">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -12,10 +12,12 @@
 		th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+	<link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>	
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 	<script type="text/javascript" th:src="@{/js/common.js}"></script>
+	<script th:src="@{/richtext/jquery.richtext.min.js}"></script>
 </head>
 
 <body>
@@ -127,7 +129,7 @@
 			</div>
 
 			<div class="col-2" style="padding-left: 5px; margin-left: -5px;">
-				<button type="submit" class="btn btn-primary ">
+				<button type="submit" class="btn btn-primary">
 					<i class="fas fa-search"></i>
 				</button>
 			</div>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="content" th:remove="tag">
+	<div class="row mb-3">
+		Les informations suivantes sont importantes pour calculer le coût d’expédition du produit.</br>
+		Les dimensions (L x l x H) correspondent à la boîte utilisée pour emballer le produit - et non aux dimensions du produit.
+	</div>
+	
+	<div class="row mb-3">
+		<label class="col-sm-2 col-form-label">Longueur (cm) :</label>
+		<div class="col-sm-1">
+			<input type="number" step="0.01" class="form-control" th:field="*{length}"/>
+		</div>
+	</div>
+	
+	<div class="row mb-3">
+		<label class="col-sm-2 col-form-label">Largeur (cm) :</label>
+		<div class="col-sm-1">
+			<input type="number" step="0.01"  class="form-control" th:field="*{width}"/>
+		</div>
+	</div>
+	
+	<div class="row mb-3">
+		<label class="col-sm-2 col-form-label">Hauteur (cm) :</label>
+		<div class="col-sm-1">
+			<input type="number" step="0.01"  class="form-control" th:field="*{height}"/>
+		</div>
+	</div>
+	
+	<div class="row mb-3">
+		<label class="col-sm-2 col-form-label">Poids (kg) :</label>
+		<div class="col-sm-1">
+			<input type="number" step="0.001" class="form-control" th:field="*{weight}" />
+		</div>
+	</div>
+</div>
+</body>
+</html>
