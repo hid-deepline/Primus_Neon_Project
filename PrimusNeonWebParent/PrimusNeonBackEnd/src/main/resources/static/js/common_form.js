@@ -26,7 +26,7 @@ function checkFileSize(fileInput) {
 	fileSize = fileInput.files[0].size;
 
 	if (fileSize > MAX_FILE_SIZE) {
-		fileInput.setCustomValidity("Vous devez choisir une image inférieure à " + MAX_FILE_SIZE + " KB!");
+		fileInput.setCustomValidity("Vous devez choisir une image inférieure à " + MAX_FILE_SIZE + " octets!");
 		fileInput.reportValidity();
 
 		return false;

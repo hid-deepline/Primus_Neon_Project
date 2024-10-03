@@ -23,7 +23,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 				<thead class="table-dark">
 					<tr>
 						<th class="hideable-column">ID</th>
-						<th>Image</th>
+						<th>Image Principale</th>
 						<th th:replace="~{fragments :: column_link('/products', 'name', 'Nom produit', 'none')}" ></th>
 						<th>Marque</th>
 						<th>Catégorie</th>
@@ -34,7 +34,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 				<tbody>
 					<tr th:each="product : ${listProducts}">
 						<td class="hideable-column">[[${product.id}]]</td>
-						<td>Image</td>
+						<td>
+							<img th:src="@{${product.mainImagePath}}" alt="Image principale" class="img-fluid" style="width: 120px" />
+						</td>
 						<td>[[${product.name}]]</td>
 						<td>[[${product.brand.name}]]</td>
 						<td>[[${product.category.name}]]</td>					
