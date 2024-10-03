@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<head th:replace="~{fragments :: page_head(${pageTitle}, 'none')}">
-	
+<head th:replace="~{fragments :: page_head(${pageTitle}, 'none')}">
 </head>
 <body>
 	<div class="container-fluid">
@@ -12,39 +11,34 @@
 		</div>
 
 		<form th:action="@{/products/save}" method="post"
-			th:object="${product}">
+			onsubmit="return checkUnique(this)" th:object="${product}">
 			<input type="hidden" th:field="*{id}" />
 
 			<div>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation">
 						<button class="nav-link active" data-bs-toggle="tab"
-							data-bs-target="#overview" type="button" role="tab"
-							>Vue d'ensemble</button>
+							data-bs-target="#overview" type="button" role="tab">Vue
+							d'ensemble</button>
 					</li>
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" data-bs-toggle="tab"
-							data-bs-target="#description" type="button" role="tab"
-							>Description</button>
+							data-bs-target="#description" type="button" role="tab">Description</button>
 					</li>
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" data-bs-toggle="tab"
-							data-bs-target="#images" type="button" role="tab"
-							>Images</button>
+							data-bs-target="#images" type="button" role="tab">Images</button>
 					</li>
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" data-bs-toggle="tab"
-							data-bs-target="#details" type="button" role="tab"
-							>Détails</button>
+							data-bs-target="#details" type="button" role="tab">Détails</button>
 					</li>
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" data-bs-toggle="tab"
-							data-bs-target="#shipping" type="button" role="tab"
-							>Expédition</button>
+							data-bs-target="#shipping" type="button" role="tab">Expédition</button>
 					</li>
 				</ul>
 
-				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane active p-3" id="overview" role="tabpanel">
 						<div th:replace="~{products/product_overview :: content}"></div>
@@ -52,10 +46,8 @@
 					<div class="tab-pane" id="description" role="tabpanel">
 						<div th:replace="~{products/product_description :: content}"></div>
 					</div>
-					<div class="tab-pane" id="images" role="tabpanel"
-						>Images</div>
-					<div class="tab-pane" id="details" role="tabpanel"
-						>Détails</div>
+					<div class="tab-pane" id="images" role="tabpanel">Images</div>
+					<div class="tab-pane" id="details" role="tabpanel">Détails</div>
 					<div class="tab-pane p-3" id="shipping" role="tabpanel">
 						<div th:replace="~{products/product_shipping :: content}"></div>
 					</div>
@@ -78,35 +70,72 @@
 		MAX_FILE_SIZE = 102400; // 100KB
 		moduleURL = "[[@{/products}]]";
 		brandModuleURL = "[[@{/brands}]]";
-		
+
 		dropdownBrands = $("#brand");
 		dropdownCategories = $("#category");
-		
-		$(document).ready(function () {
+
+		$(document).ready(function() {
 
 			$("#shortDescription").richText();
 			$("#fullDescription").richText();
-			
-				dropdownBrands.change(function () {
-                	dropdownCategories.empty();
-					getCategories();
-				});
-				
+
+			dropdownBrands.change(function() {
+				dropdownCategories.empty();
 				getCategories();
 			});
-		
+
+			getCategories();
+		});
+
 		function getCategories() {
 			brandId = dropdownBrands.val();
 			url = brandModuleURL + "/" + brandId + "/categories";
-			
+
 			$.get(url, function(responseJson) {
-				$.each(responseJson, function (index, category) {
-					$("<option>").val (category.id).text(category.name).appendTo(dropdownCategories);
+				$.each(responseJson, function(index, category) {
+					$("<option>").val(category.id).text(category.name)
+							.appendTo(dropdownCategories);
 				});
 			});
 		}
+
+		function checkUnique(form) {
+			productId = $("#id").val();
+			productName = $("#name").val();
+
+			csrfValue = $("input[name='_csrf']").val();
+
+			url = "[[@{/products/check_unique}]]";
+
+			params = {
+				id : productId,
+				name : productName,
+				_csrf : csrfValue
+			};
+
+			$
+					.post(
+							url,
+							params,
+							function(response) {
+								if (response == "OK") {
+									form.submit();
+								} else if (response == "Dupliqué") {
+									showWarningModal("Il existe un autre produit portant le même nom "
+											+ productName);
+								} else {
+									showErrorModal("Réponse inconnue du serveur");
+								}
+
+							})
+					.fail(
+							function() {
+								showErrorModal("Impossible de se connecter au serveur");
+							});
+
+			return false;
+		}
 	</script>
 	<script th:src="@{/js/common_form.js}"></script>
-	
 </body>
 </html>

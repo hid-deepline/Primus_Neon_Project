@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.doranco.primus_neon.admin.brand.BrandService;
 import fr.doranco.primus_neon.common.entity.Brand;
@@ -46,11 +48,37 @@ public class ProductController {
 	}
 	
 	@PostMapping("/products/save")
-	public String saveProduct(Product product) {
-		System.out.println("Nom du produit: " + product.getName());
-		System.out.println("ID de la marque: " + product.getBrand().getId());
-		System.out.println("ID de la catégorie: " + product.getCategory().getId());
+	public String saveProduct(Product product, RedirectAttributes ra) {
+		productService.save(product);
+		ra.addFlashAttribute("message", "Le produit a été sauvegardé avec succès.");
 		
+		return "redirect:/products";
+	}
+	
+	@GetMapping("/products/{id}/enabled/{status}")
+	public String updateProductEnabledStatus(@PathVariable("id") Integer id, @PathVariable("status") boolean enabled,
+			RedirectAttributes redirectAttributes) {
+
+		productService.updateProductEnabledStatus(id, enabled);
+		String status = enabled ? "activer" : "désactiver";
+		String message = "L'ID produit " + id + " a été " + status;
+		redirectAttributes.addFlashAttribute("message", message);
+
+		return "redirect:/products";
+
+	}
+	
+	@GetMapping("/products/delete/{id}")
+	public String deleteProduct(@PathVariable(name = "id") Integer id, Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+			productService.delete(id);
+			redirectAttributes.addFlashAttribute("message", "L'ID produit " + id + " a été supprimé avec succès.");
+
+		} catch (ProductNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+		}
+
 		return "redirect:/products";
 	}
 
