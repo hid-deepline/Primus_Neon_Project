@@ -30,7 +30,7 @@ public class Brand {
 	@Column(length = 128, nullable = false)
 	private String logo;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "brands_categories", joinColumns = @JoinColumn(name = "brand_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>();
 

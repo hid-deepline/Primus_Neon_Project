@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<div th:fragment="content" id="divProductDetails">
+		<div class="row mb-2" id="divDetail0">
+			<div class="col-sm-3">
+				<div class="input-group mb-2">
+					<div class="input-group-text">Nom :</div>
+					<input type="text" class="form-control w-25" name="detailNames" maxlength="255"/>
+				</div>
+			</div>
+
+			<div class="col-sm-3">
+				<div class="input-group mb-2">
+					<div class="input-group-text">Valeur :</div>
+					<input type="text" class="form-control w-25" name="detailValues" maxlength="255" />
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

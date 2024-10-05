@@ -32,6 +32,7 @@ public class CategoryController {
 	@GetMapping("/categories/page/{pageNum}") 
 	public String listByPage(@PathVariable(name = "pageNum") int pageNum, 
 			String sortDir,	String keyword,	Model model) {
+		
 		if (sortDir ==  null || sortDir.isEmpty()) {
 			sortDir = "asc";
 		}
@@ -145,9 +146,9 @@ public class CategoryController {
 	 
 	 @GetMapping("/categories/export/csv")
 		public void exportToCSV(HttpServletResponse response) throws IOException {
+		 
 			List<Category> listCategories = service.listCategoriesUsedInForm();
 			CategoryCsvExporter exporter = new CategoryCsvExporter();
 			exporter.export(listCategories, response);
 		}
-
 }

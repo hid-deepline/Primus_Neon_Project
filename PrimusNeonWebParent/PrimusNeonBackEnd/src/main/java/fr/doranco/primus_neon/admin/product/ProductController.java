@@ -59,7 +59,7 @@ public class ProductController {
 			@RequestParam(name = "detailNames", required = false) String[] detailNames,
 			@RequestParam(name = "detailValues", required = false) String[] detailValues) throws IOException {
 		setMainImageName(mainImageMultipart, product);
-		setExtraImages(extraImageMultiparts, product);
+		setExtraImageNames(extraImageMultiparts, product);
 		setProductDetails(product, detailNames, detailValues);
 
 		Product savedProduct = productService.save(product);
@@ -96,19 +96,19 @@ public class ProductController {
 		}
 
 		if (extraImageMultiparts.length > 0) {
-			String uploadDir = "../product-images/" + savedProduct.getId() + "/extra";
+			String uploadDir = "../product-images/" + savedProduct.getId() + "/extras";
 
 			for (MultipartFile multipartFile : extraImageMultiparts) {
-				if (!multipartFile.isEmpty())
+				if (multipartFile.isEmpty())
 					continue;
 
-				String fileName = StringUtils.cleanPath(mainImageMultipart.getOriginalFilename());
-				FileUploadUtil.saveFile(uploadDir, fileName, mainImageMultipart);
+				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+				FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 			}
 		}
 	}
 
-	private void setExtraImages(MultipartFile[] extraImageMultiparts, Product product) {
+	private void setExtraImageNames(MultipartFile[] extraImageMultiparts, Product product) {
 		if (extraImageMultiparts.length > 0) {
 			for (MultipartFile multipartFile : extraImageMultiparts) {
 				if (!multipartFile.isEmpty()) {
@@ -159,4 +159,23 @@ public class ProductController {
 		return "redirect:/products";
 	}
 
+	@GetMapping("/products/edit/{id}")
+	public String editProduct(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes ra) {
+
+		try {
+			Product product = productService.get(id);
+			List<Brand> listBrands = brandService.listAll();
+
+			model.addAttribute("product", product);
+			model.addAttribute("listBrands", listBrands);
+			model.addAttribute("pageTitle", "Modifier le produit (ID: " + id + ")");
+
+			return "products/product_form";
+
+		} catch (ProductNotFoundException e) {
+			ra.addFlashAttribute("message", e.getMessage());
+
+			return "redirect:/products";
+		}
+	}
 }

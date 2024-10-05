@@ -19,7 +19,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class BrandService {
-	public static final int BRANDS_PER_PAGE = 1;
+	public static final int BRANDS_PER_PAGE = 3;
 
 	@Autowired
 	private BrandRepository repo;
