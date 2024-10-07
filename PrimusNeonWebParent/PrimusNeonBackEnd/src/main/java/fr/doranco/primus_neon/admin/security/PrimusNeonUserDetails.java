@@ -23,15 +23,13 @@ public class PrimusNeonUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<Role> roles = user.getRoles();
-		
-		
+				
 		List<GrantedAuthority> authories = new ArrayList<>();
 		
 		for (Role role : roles) {
 			authories.add(new SimpleGrantedAuthority(role.getName()));
 		}
-		
-		
+			
 		return authories;
 	}
 
@@ -76,5 +74,4 @@ public class PrimusNeonUserDetails implements UserDetails {
 	public void setLastName(String lastName) {
 		this.user.setLastName(lastName);
 	}
-
 }

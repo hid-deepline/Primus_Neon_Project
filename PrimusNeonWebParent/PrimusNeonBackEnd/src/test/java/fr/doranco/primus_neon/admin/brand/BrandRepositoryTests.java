@@ -56,7 +56,7 @@ public class BrandRepositoryTests {
 		
 		assertThat(brands).isNotEmpty();
 	}
-/*
+
 	@Test
 	public void testGetById() {
 		Brand brand = repo.findById(1).get();
@@ -82,5 +82,5 @@ public class BrandRepositoryTests {
 		Optional<Brand> result = repo.findById(id);
 		
 		assertThat(result.isEmpty());
-	}*/
+	}
 }

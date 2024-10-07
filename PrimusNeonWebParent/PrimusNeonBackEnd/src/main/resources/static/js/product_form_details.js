@@ -1,9 +1,18 @@
+$(document).ready(function() {
+	$("a[name = 'linkRemoveDetail']").each(function(index) {
+		$(this).click(function() {
+			removeDetailSectionByIndex(index);
+		});
+	});
+});
+
 function addNextDetailSection() {
 	allDivDetails = $("[id^=divDetail]");
 	divDetailsCount = allDivDetails.length;
 
 	htmDetailSection = `
 		<div class="row mb-2" id="divDetail${divDetailsCount}">
+		<input type="hidden" name="detailIDs" value="0" />
 			<div class="col-sm-3">
 				<div class="input-group mb-2">
 					<div class="input-group-text">Nom :</div>
@@ -40,4 +49,8 @@ function addNextDetailSection() {
 
 function removeDetailSectionById(id) {
 	$("#" + id).remove();
+}
+
+function removeDetailSectionByIndex(index) {
+	$("#divDetail" + index).remove();
 }
