@@ -284,4 +284,12 @@ public class Product {
 
 		return false;
 	}
+	
+	public String getShortName() {
+		if (name.length() > 50) {
+			return name.substring(0, 50) + "...";
+		}
+
+		return name;
+	}
 }

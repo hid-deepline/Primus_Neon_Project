@@ -35,7 +35,6 @@ public class BrandController {
 	public String listFirstPage(Model model) {
 
 		return "redirect:/brands/page/1?sortField=name&sortDir=asc";
-		// return listByPage(1, model, "name", "asc", null);
 	}
 
 	@GetMapping("/brands/page/{pageNum}")

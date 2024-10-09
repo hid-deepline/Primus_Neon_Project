@@ -22,13 +22,17 @@
 				class="table table-bordered table-striped table-hover table-responsive-xl">
 				<thead class="table-dark">
 					<tr>
-						<th class="hideable-column">ID</th>
+						<th class="hideable-column" 
+							th:replace="~{fragments :: column_link('/products', 'id', 'ID', 'none')}"></th>
 						<th>Image Principale</th>
 						<th
 							th:replace="~{fragments :: column_link('/products', 'name', 'Nom produit', 'none')}"></th>
-						<th>Marque</th>
-						<th>Catégorie</th>
-						<th>Activé</th>
+						<th 
+							th:replace="~{fragments :: column_link('/products', 'brand', 'Marque', 'none')}">Marque</th>
+						<th 
+							th:replace="~{fragments :: column_link('/products', 'category', 'Catégorie', 'none')}"></th>
+						<th 
+							th:replace="~{fragments :: column_link('/products', 'enabled', 'Activé', 'none')}">Activé</th>
 						<th></th>
 					</tr>
 				</thead>
