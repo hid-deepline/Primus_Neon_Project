@@ -33,10 +33,10 @@ public class Category {
 	@Column(length = 128, nullable = false)
 	private String image;
 	
-	
 	private boolean enabled;
 	
-	
+	@Column(name = "all_parent_ids", length = 256, nullable = true)
+	private String allParentIDs;
 
 	@ManyToOne
 	@JoinColumn(name = "parent_id")
@@ -51,9 +51,7 @@ public class Category {
 	
 	public Category(Integer id) {
 		this.id = id;
-	}
-	
-	
+	}	
 
 	public static Category copyIdAndName(Category category) {
 		Category copyCategory = new Category();
@@ -206,6 +204,12 @@ public class Category {
 		Category other = (Category) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
+	public String getAllParentIDs() {
+		return allParentIDs;
+	}
+
+	public void setAllParentIDs(String allParentIDs) {
+		this.allParentIDs = allParentIDs;
+	}	
 }

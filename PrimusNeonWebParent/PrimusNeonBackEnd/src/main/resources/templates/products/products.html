@@ -15,23 +15,62 @@
 				class="fas fa-file-csv fa-2x icon-dark mr-2"></a>
 		</div>
 
-		<div th:replace="~{fragments :: search_form_and_message}"></div>
+		<div class="row mb-2">
+			<form th:action="@{/products/page/1}"
+				class="row row-cols-lg-auto mb-1 mt-3" id="searchForm">
+				<input type="hidden" name="sortField" th:value="${sortField}" /> <input
+					type="hidden" name="sortDir" th:value="${sortDir}" />
+				<div class="col">
+					<div class="input-group">
+						<div class="input-group-text" style="min-width: 100px;">Catégorie
+							:</div>
+						<select name="categoryId" class="form-control"
+							style="max-width: 200px;" id="dropdownCategory">
+							<option value="0">Toutes les catégories</option>
+							<th:block th:each="cat : ${listCategories}">
+								<option th:value="${cat.id}">[[${cat.name}]]</option>
+							</th:block>
+						</select>
+					</div>
+				</div>
+				<div>
+					<div class="input-group">
+						<div class="input-group-text">Filtre :</div>
+						<input type="search" name="keyword" th:value="${keyword}"
+							class="form-control" placeholder="Mot-clé" required />
+					</div>
+				</div>
+				<div class="col-2" style="padding-left: 5px; margin-left: -5px;">
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-search"></i>
+					</button>
+				</div>
+				<div class="col-2" style="padding-left: 5px; margin-left: -5px;">
+					<button type="button" class="btn btn-secondary"
+						onclick="clearFilter()">
+						<i class="fas fa-eraser"></i>
+					</button>
+				</div>
+			</form>
+			<div th:if="${message != null}"
+				class="alert alert-success text-center">[[${message}]]</div>
+		</div>
 
 		<div class="full-details">
 			<table
 				class="table table-bordered table-striped table-hover table-responsive-xl">
 				<thead class="table-dark">
 					<tr>
-						<th class="hideable-column" 
+						<th class="hideable-column"
 							th:replace="~{fragments :: column_link('/products', 'id', 'ID', 'none')}"></th>
 						<th>Image Principale</th>
 						<th
 							th:replace="~{fragments :: column_link('/products', 'name', 'Nom produit', 'none')}"></th>
-						<th 
+						<th
 							th:replace="~{fragments :: column_link('/products', 'brand', 'Marque', 'none')}">Marque</th>
-						<th 
+						<th
 							th:replace="~{fragments :: column_link('/products', 'category', 'Catégorie', 'none')}"></th>
-						<th 
+						<th
 							th:replace="~{fragments :: column_link('/products', 'enabled', 'Activé', 'none')}">Activé</th>
 						<th></th>
 					</tr>
@@ -44,9 +83,7 @@
 						</td>
 						<td><a class="link-detail"
 							th:href="@{'/products/detail/' + ${product.id}}"
-							th:title="${product.name}">[[${product.shortName}]]</a>
-
-						</td>
+							th:title="${product.name}">[[${product.shortName}]]</a></td>
 						<td>[[${product.brand.name}]]</td>
 						<td>[[${product.category.name}]]</td>
 						<td>
@@ -87,12 +124,10 @@
 
 
 		<div th:replace="~{modal_fragments :: confirm_modal}"></div>
-		
+
 		<div class="modal fade" id="detailModal">
 			<div class="modal-dialog modal-xl">
-				<div class="modal-content">
-					
-					</div>
+				<div class="modal-content"></div>
 
 			</div>
 		</div>
@@ -102,26 +137,31 @@
 		<div th:replace="~{fragments :: footer}"></div>
 	</div>
 
-	<script th:src="@{/js/common_list.js}"></script>
-	<script type="text/javascript">
-		moduleURL = "[[@{/products}]]";
+<script th:src="@{/js/common_list.js}"></script>
+<script type="text/javascript">
+	moduleURL = "[[@{/products}]]";
 
-		$(document).ready(function() {
+	$(document).ready(
+		function() {
 			$(".link-delete").on("click", function(e) {
 				e.preventDefault();
 				showDeleteConfirmModal($(this), 'produit');
 			});
 
-			$(".link-detail").on("click", function(e) {
-				e.preventDefault();
-				linkDetailURL = $(this).attr("href");
-				$("#detailModal").modal("show").find(".modal-content").load(linkDetailURL);
-			});
+			$(".link-detail").on(
+					"click",
+		function(e) {
+			e.preventDefault();
+			linkDetailURL = $(this).attr("href");
+			$("#detailModal").modal("show").find(
+				".modal-content").load(linkDetailURL);
 		});
-		function clearFilter() {
-			window.location = "[[@{/products}]]";
-
-		};
-	</script>
+			
+		$("#dropdownCategory").change(function () {
+				$("#searchForm").submit();
+			});
+			
+	});		
+</script>
 </body>
 </html>

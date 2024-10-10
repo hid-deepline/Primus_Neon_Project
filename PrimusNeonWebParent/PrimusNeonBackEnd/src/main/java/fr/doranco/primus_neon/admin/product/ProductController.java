@@ -25,7 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.doranco.primus_neon.admin.FileUploadUtil;
 import fr.doranco.primus_neon.admin.brand.BrandService;
+import fr.doranco.primus_neon.admin.category.CategoryService;
 import fr.doranco.primus_neon.common.entity.Brand;
+import fr.doranco.primus_neon.common.entity.Category;
 import fr.doranco.primus_neon.common.entity.Product;
 import fr.doranco.primus_neon.common.entity.ProductImage;
 
@@ -38,23 +40,26 @@ public class ProductController {
 
 	@Autowired
 	private BrandService brandService;
+	
+	@Autowired
+	private CategoryService categoryService;
 
 	@GetMapping("/products")
 	public String listFirstPage(Model model) {
 
-		return "redirect:/products/page/1?sortField=name&sortDir=asc";
+		return "redirect:/products/page/1?sortField=name&sortDir=asc&categoryId=0";
 	}
 	
 	@GetMapping("/products/page/{pageNum}")
 	public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model, 
 			@Param("sortField") String sortField, 
 			@Param("sortDir") String sortDir, 
-			@Param("keyword") String keyword) {
+			@Param("keyword") String keyword, 
+			@Param("categoryID") Integer categoryID) {
 
-		System.out.println("Sort Field: " + sortField);
-		System.out.println("Sort Order: " + sortDir);
 		Page<Product> page = productService.listByPage(pageNum, sortField, sortDir, keyword);
 		List<Product> listProducts = page.getContent();
+		List<Category> listCategories = categoryService.listCategoriesUsedInForm();
 
 		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
 		long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
@@ -70,6 +75,7 @@ public class ProductController {
 		model.addAttribute("endCount", endCount);
 		model.addAttribute("totalItems", page.getTotalElements());
 		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("listCategories", listCategories);
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", reverseSortDir);
