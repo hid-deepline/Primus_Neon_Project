@@ -35,7 +35,7 @@
 
 	<a th:fragment="page_link(pageNum, label)" class="page-link"
 		th:href="@{${moduleURL} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} 
-		+ ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
+		+ ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${label}]]</a>
 
 	<div th:fragment="user_photos" th:remove="tag">
 		<span th:if="${user.photos == null}"

@@ -28,7 +28,7 @@
 							style="max-width: 200px;" id="dropdownCategory">
 							<option value="0">Toutes les catégories</option>
 							<th:block th:each="cat : ${listCategories}">
-								<option th:value="${cat.id}">[[${cat.name}]]</option>
+								<option th:value="${cat.id}" th:select="(${categoryId} == ${cat.id})">[[${cat.name}]]</option>
 							</th:block>
 						</select>
 					</div>
