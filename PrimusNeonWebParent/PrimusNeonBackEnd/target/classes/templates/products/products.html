@@ -10,7 +10,7 @@
 			<h2>Gestion des produits</h2>
 
 			<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur')">
-			<a th:href="@{/products/new}"
+				<a th:href="@{/products/new}"
 					class="fas fa-folder-plus fa-2x icon-dark mr-2"></a>
 				<a th:href="@{/products/export/csv}"
 					class="fas fa-file-csv fa-2x icon-dark mr-2"></a>
@@ -65,20 +65,30 @@
 				class="table table-bordered table-striped table-hover table-responsive-xl">
 				<thead class="table-dark">
 					<tr>
-						<th class="hideable-column"
-							th:replace="~{fragments :: column_link('/products', 'id', 'ID', 'none')}"></th>
+						<th class="hideable-column">
+						    <th
+							th:replace="~{fragments :: column_link('/products', 'id', 'ID', 'tag')}" />
+						</th>
+						
 						<th>Image Principale</th>
 						<th
 							th:replace="~{fragments :: column_link('/products', 'name', 'Nom produit', 'none')}"></th>
-						<th class="hideable-column"
-							th:replace="~{fragments :: column_link('/products', 'brand', 'Marque', 'none')}"></th>
-						<th class="hideable-column"
-							th:replace="~{fragments :: column_link('/products', 'category', 'Catégorie', 'none')}"></th>
-							
-						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur')">
-						<th th:replace="~{fragments :: column_link('/products', 'enabled', 'Activé', 'none')}"></th>
-						</th:block>
 						
+						<th class="hideable-column">
+							<th 
+								th:replace="~{fragments :: column_link('/products', 'brand', 'Marque', 'tag')}" />
+						</th>
+						
+						<th class="hideable-column">
+							<th 
+								th:replace="~{fragments :: column_link('/products', 'category', 'Catégorie', 'tag')}" />
+						</th>
+
+						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur')">
+							<th
+								th:replace="~{fragments :: column_link('/products', 'enabled', 'Activé', 'none')}"></th>
+						</th:block>
+
 						<th></th>
 					</tr>
 				</thead>
@@ -91,29 +101,28 @@
 						<td><a class="link-detail"
 							th:href="@{'/products/detail/' + ${product.id}}"
 							th:title="${product.name}">[[${product.shortName}]]</a></td>
-						<td>[[${product.brand.name}]]</td>
-						<td>[[${product.category.name}]]</td>
-						
+						<td class="hideable-column">[[${product.brand.name}]]</td>
+						<td class="hideable-column">[[${product.category.name}]]</td>
+
 						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur')">
-						<td>
-							<div th:replace="~{fragments :: status(${product.enabled}, 'ce produit', '/products/' + ${product.id})}" />
-						</td>
+							<td>
+								<div
+									th:replace="~{fragments :: status(${product.enabled}, 'ce produit', '/products/' + ${product.id})}" />
+							</td>
 						</th:block>
-						
+
 						<td><a class="fas fa-file-alt fa-2x icon-green link-detail"
 							th:href="@{'/products/detail/' + ${product.id}}"
-							title="Description du produit"></a> 
-							
-							<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur', 'Commercial')">
+							title="Description du produit"></a> <th:block
+								sec:authorize="hasAnyAuthority('Admin', 'Editeur', 'Commercial')">
 							&nbsp;
-							<div th:replace="~{fragments :: edit('ce produit', '/products/edit/' + ${product.id})}" />
-							</th:block>
-								
-							<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur')">
+							<div
+									th:replace="~{fragments :: edit('ce produit', '/products/edit/' + ${product.id})}" />
+							</th:block> <th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur')">
 							&nbsp;
-							<div th:replace="~{fragments :: delete('ce produit', ${product.id}, '/products/delete/' + ${product.id}, true)}" />
-							</th:block>
-						</td>
+							<div
+									th:replace="~{fragments :: delete('ce produit', ${product.id}, '/products/delete/' + ${product.id}, true)}" />
+							</th:block></td>
 					</tr>
 				</tbody>
 			</table>
@@ -131,26 +140,26 @@
 							th:href="@{'/products/detail/' + ${product.id}}">[[${product.shortName}]]</a>
 					</div>
 					<div class="mt-2">
-					
-					<a class="fas fa-file-alt fa-2x icon-green link-detail"
+						<a class="fas fa-file-alt fa-2x icon-green link-detail"
 							th:href="@{'/products/detail/' + ${product.id}}"></a>
-							
-						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur', 'Commercial')">
+
+						<th:block
+							sec:authorize="hasAnyAuthority('Admin', 'Editeur', 'Commercial')">
 							&nbsp;
-							<div th:replace="~{fragments :: edit('ce produit', '/products/edit/' + ${product.id})}" />
-							</th:block>
-								
-							<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur')">
+							<div
+								th:replace="~{fragments :: edit('ce produit', '/products/edit/' + ${product.id})}" />
+						</th:block>
+
+						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur')">
 							&nbsp;
-							<div th:replace="~{fragments :: delete('ce produit', ${product.id}, '/products/delete/' + ${product.id}, true)}" />
-							</th:block>
+							<div
+								th:replace="~{fragments :: delete('ce produit', ${product.id}, '/products/delete/' + ${product.id}, true)}" />
+						</th:block>
 					</div>
 				</div>
 				<div>&nbsp;</div>
 			</div>
 		</div>
-
-
 
 		<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 
