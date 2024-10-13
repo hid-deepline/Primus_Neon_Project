@@ -21,7 +21,17 @@ public class WebSecurityConfig {
 		http.authenticationProvider(authenticationProvider());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/users/**", "/settings/**").hasAuthority("Admin")
 				.requestMatchers("/categories/**", "/brands/**").hasAnyAuthority("Admin", "Editeur")
-				.requestMatchers("/products/**").hasAnyAuthority("Admin", "Editeur", "Commercial", "Expéditeur")
+				
+				.requestMatchers("/products/new", "/products/delete/**").hasAnyAuthority("Admin", "Editeur")
+				
+				.requestMatchers("/products/edit/**", "/products/save", "/products/chexk_unique")
+					.hasAnyAuthority("Admin", "Editeur", "Commercial")
+				
+				.requestMatchers("/products", "/products/", "/products/detail/**", "/products/page/**")
+					.hasAnyAuthority("Admin", "Editeur", "Commercial", "Expéditeur")
+					
+				.requestMatchers("/products/**").hasAnyAuthority("Admin", "Editeur")
+				
 				.anyRequest().authenticated())
 				.formLogin(form -> form.loginPage("/login").usernameParameter("email").permitAll())
 				.logout(logout -> logout.permitAll())

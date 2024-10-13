@@ -13,7 +13,7 @@ import fr.doranco.primus_neon.common.entity.Role;
 import fr.doranco.primus_neon.common.entity.User;
 
 public class PrimusNeonUserDetails implements UserDetails {
-
+	private static final long serialVersionUID = 1L;
 	private User user;
 	
 	public PrimusNeonUserDetails(User user) {
@@ -73,5 +73,9 @@ public class PrimusNeonUserDetails implements UserDetails {
 
 	public void setLastName(String lastName) {
 		this.user.setLastName(lastName);
+	}
+	
+	public boolean hasRole(String roleName) {
+		return user.hasRole(roleName);
 	}
 }

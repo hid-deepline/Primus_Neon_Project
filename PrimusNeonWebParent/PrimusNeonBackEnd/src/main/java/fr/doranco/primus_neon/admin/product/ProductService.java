@@ -17,7 +17,7 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class ProductService {
-	public static final int PRODUCTS_PER_PAGE = 2;
+	public static final int PRODUCTS_PER_PAGE = 5;
 
 	@Autowired
 	private ProductRepository repo;
@@ -38,7 +38,7 @@ public class ProductService {
 				String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
 				return repo.searchInCategory(categoryId, categoryIdMatch, keyword, pageable);
 			}
-			
+
 			return repo.findAll(keyword, pageable);
 		}
 
@@ -67,6 +67,15 @@ public class ProductService {
 		product.setUpdatedTime(new Date());
 
 		return repo.save(product);
+	}
+
+	public void saveProductPrice(Product productInForm) {
+		Product productInDB = repo.findById(productInForm.getId()).get();
+		productInDB.setCost(productInForm.getCost());
+		productInDB.setPrice(productInForm.getPrice());
+		productInDB.setDiscountPercent(productInForm.getDiscountPercent());
+
+		repo.save(productInDB);
 	}
 
 	public String checkUnique(Integer id, String name) {
