@@ -41,7 +41,7 @@ public class UserController {
 
 	@GetMapping("/users/page/{pageNum}")
 	public String listByPage(
-			@PathVariable(name = "pageNum") int pageNum, Model model,
+			@PathVariable("pageNum") int pageNum, Model model,
 			 String sortField, String sortDir, String keyword) {
 		
 		System.out.println("Sort Field: " + sortField);
@@ -118,7 +118,7 @@ public class UserController {
 	}
 
 	@GetMapping("/users/edit/{id}")
-	public String editUser(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+	public String editUser(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
 
 		try {
 			User user = service.get(id);
@@ -137,7 +137,7 @@ public class UserController {
 	}
 
 	@GetMapping("/users/delete/{id}")
-	public String deleteUser(@PathVariable(name = "id") Integer id, Model model,
+	public String deleteUser(@PathVariable("id") Integer id, Model model,
 			RedirectAttributes redirectAttributes) {
 
 		try {

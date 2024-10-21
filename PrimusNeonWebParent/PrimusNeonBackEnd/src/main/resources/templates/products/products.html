@@ -66,22 +66,22 @@
 				<thead class="table-dark">
 					<tr>
 						<th class="hideable-column">
-						    <th
+						<th 
 							th:replace="~{fragments :: column_link('/products', 'id', 'ID', 'tag')}" />
 						</th>
-						
+
 						<th>Image Principale</th>
 						<th
 							th:replace="~{fragments :: column_link('/products', 'name', 'Nom produit', 'none')}"></th>
-						
+
 						<th class="hideable-column">
-							<th 
-								th:replace="~{fragments :: column_link('/products', 'brand', 'Marque', 'tag')}" />
+						<th
+							th:replace="~{fragments :: column_link('/products', 'brand', 'Marque', 'tag')}" />
 						</th>
-						
+
 						<th class="hideable-column">
-							<th 
-								th:replace="~{fragments :: column_link('/products', 'category', 'Catégorie', 'tag')}" />
+						<th
+							th:replace="~{fragments :: column_link('/products', 'category', 'Catégorie', 'tag')}" />
 						</th>
 
 						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editeur')">
@@ -98,7 +98,9 @@
 						<td><img th:src="@{${product.mainImagePath}}"
 							alt="Image principale" class="img-fluid" style="width: 120px" />
 						</td>
-						<td><a class="link-detail"
+						<td><a class="link-detail" style="text-decoration: none;"
+							onmouseover="this.style.textDecoration='underline'"
+							onmouseout="this.style.textDecoration='none'"
 							th:href="@{'/products/detail/' + ${product.id}}"
 							th:title="${product.name}">[[${product.shortName}]]</a></td>
 						<td class="hideable-column">[[${product.brand.name}]]</td>

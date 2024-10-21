@@ -1,4 +1,4 @@
-package fr.doranco.primus_neon.admin.product;
+package fr.doranco.primus_neon.common.exception;
 
 public class ProductNotFoundException extends Exception {
 

@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import fr.doranco.primus_neon.common.entity.Category;
+import fr.doranco.primus_neon.common.exception.CategoryNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service

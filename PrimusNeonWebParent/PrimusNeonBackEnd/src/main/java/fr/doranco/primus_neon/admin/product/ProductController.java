@@ -24,6 +24,7 @@ import fr.doranco.primus_neon.admin.security.PrimusNeonUserDetails;
 import fr.doranco.primus_neon.common.entity.Brand;
 import fr.doranco.primus_neon.common.entity.Category;
 import fr.doranco.primus_neon.common.entity.Product;
+import fr.doranco.primus_neon.common.exception.ProductNotFoundException;
 
 @Controller
 public class ProductController {
@@ -44,7 +45,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/page/{pageNum}")
-	public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model, 
+	public String listByPage(@PathVariable("pageNum") int pageNum, Model model, 
 			@Param("sortField") String sortField, 
 			@Param("sortDir") String sortDir, 
 			@Param("keyword") String keyword, 
@@ -145,7 +146,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/products/delete/{id}")
-	public String deleteProduct(@PathVariable(name = "id") Integer id, Model model,
+	public String deleteProduct(@PathVariable("id") Integer id, Model model,
 			RedirectAttributes redirectAttributes) {
 		try {
 			productService.delete(id);
@@ -165,7 +166,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/products/edit/{id}")
-	public String editProduct(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes ra) {
+	public String editProduct(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
 
 		try {
 			Product product = productService.get(id);
@@ -187,7 +188,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/detail/{id}")
-	public String viewProductDetails(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes ra) {
+	public String viewProductDetails(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
 
 		try {
 			Product product = productService.get(id);

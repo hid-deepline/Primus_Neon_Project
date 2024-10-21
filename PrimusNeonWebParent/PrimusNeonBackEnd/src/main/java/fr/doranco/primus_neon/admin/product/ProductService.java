@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import fr.doranco.primus_neon.common.entity.Product;
+import fr.doranco.primus_neon.common.exception.ProductNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service

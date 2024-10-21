@@ -38,7 +38,7 @@ public class BrandController {
 	}
 
 	@GetMapping("/brands/page/{pageNum}")
-	public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model, 
+	public String listByPage(@PathVariable("pageNum") int pageNum, Model model, 
 			@Param("sortField") String sortField, 
 			@Param("sortDir") String sortDir, 
 			@Param("keyword") String keyword) {
@@ -104,7 +104,7 @@ public class BrandController {
 	}
 
 	@GetMapping("/brands/edit/{id}")
-	public String editBrand(@PathVariable(name = "id") Integer id, Model model, 
+	public String editBrand(@PathVariable("id") Integer id, Model model, 
 			RedirectAttributes ra) {
 
 		try {
@@ -126,7 +126,7 @@ public class BrandController {
 	}
 
 	@GetMapping("/brands/delete/{id}")
-	public String deleteBrand(@PathVariable(name = "id") Integer id, Model model,
+	public String deleteBrand(@PathVariable("id") Integer id, Model model,
 			RedirectAttributes redirectAttributes) {
 		try {
 			brandService.delete(id);

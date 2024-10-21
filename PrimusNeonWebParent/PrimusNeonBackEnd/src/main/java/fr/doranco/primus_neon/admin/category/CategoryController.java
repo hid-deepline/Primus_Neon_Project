@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.doranco.primus_neon.admin.FileUploadUtil;
 import fr.doranco.primus_neon.common.entity.Category;
+import fr.doranco.primus_neon.common.exception.CategoryNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
@@ -30,7 +31,7 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/categories/page/{pageNum}") 
-	public String listByPage(@PathVariable(name = "pageNum") int pageNum, 
+	public String listByPage(@PathVariable("pageNum") int pageNum, 
 			String sortDir,	String keyword,	Model model) {
 		
 		if (sortDir ==  null || sortDir.isEmpty()) {
@@ -98,7 +99,7 @@ public class CategoryController {
 	}
 
 	@GetMapping("/categories/edit/{id}")
-	public String editCategory(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes ra) {
+	public String editCategory(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
 
 		try {
 			Category category = service.get(id);
@@ -130,7 +131,7 @@ public class CategoryController {
 	}
 	
 	 @GetMapping("/categories/delete/{id}") 
-	 public String deleteCategory(@PathVariable(name = "id") Integer id, Model model,
+	 public String deleteCategory(@PathVariable("id") Integer id, Model model,
 			 RedirectAttributes redirectAttributes) {
 	  
 	  try { service.delete(id); redirectAttributes.addFlashAttribute("message",

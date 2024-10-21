@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<body>
+	<div th:fragment="header_menu">
+		<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+			<a class="navbar-brand m-2" th:href="@{/}"> <img
+				alt="logo Primus Neon"
+				th:src="@{/images/Logo Admin Primus Neon.png}"> <img
+				alt="label Primus Neon"
+				th:src="@{/images/Label Admin Primus Neon.png}">
+			</a>
+			<button class="navbar-toggler m-3" type="button"
+				data-bs-toggle="collapse" data-bs-target="#topNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="topNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">Carrières</a>
+					</li>
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">Paiements</a>
+					</li>
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">Expédition &amp; Livraison</a>
+					</li>
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">Se connecter</a>
+					</li>
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">S'inscrire</a>
+					</li>
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<div th:fragment="footer_menu">
+	<div>
+		<nav class="navbar navbar-expand-lg bg-dark navbar-dark mt-3">
+			<button class="navbar-toggler m-3" type="button"
+				data-bs-toggle="collapse" data-bs-target="#bottomNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="bottomNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">À propos de nous</a>
+					</li>
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">Retours &amp; Remboursements</a>
+					</li>
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">Conditions Générales de Vente</a>
+					</li>
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">Mentions Légales</a>
+					</li>
+					<li class="nav-item m-2">
+						<a class="nav-link" href="">Politique de confidentialité</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div th:fragment="footer" class="text-center m-3">
+		<p>Primus Neon - Copyright &copy; Primus Neon Ltd.</p>
+	</div>
+	</div>
+</body>
+</html>

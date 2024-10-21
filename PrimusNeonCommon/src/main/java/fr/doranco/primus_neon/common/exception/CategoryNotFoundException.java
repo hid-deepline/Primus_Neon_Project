@@ -1,4 +1,4 @@
-package fr.doranco.primus_neon.admin.category;
+package fr.doranco.primus_neon.common.exception;
 
 public class CategoryNotFoundException extends Exception {
 	
