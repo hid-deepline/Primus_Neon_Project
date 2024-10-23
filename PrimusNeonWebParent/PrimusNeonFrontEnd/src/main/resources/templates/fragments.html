@@ -22,7 +22,7 @@
 		+ ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
 
 	<div th:fragment="pagination(moduleURL, entityName)" th:remove="tag">
-		<div class="text-center m-1" th:if="${totalPages > 1}">
+		<div class="text-center m-1" th:if="${totalItems > 0}">
 			<span>Affichage des [[${entityName}]] # [[${startCount}]] à
 				[[${endCount}]] sur [[${totalItems}]]</span>
 		</div>

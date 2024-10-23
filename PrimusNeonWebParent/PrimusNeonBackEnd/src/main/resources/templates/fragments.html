@@ -78,7 +78,7 @@
 	</div>
 
 	<div th:fragment="pagination(entityName)" th:remove="tag">
-		<div class="text-center m-1" th:if="${totalPages > 1}">
+		<div class="text-center m-1" th:if="${totalItems > 0}">
 			<span>Affichage des [[${entityName}]] # [[${startCount}]] à
 				[[${endCount}]] sur [[${totalItems}]]</span>
 		</div>

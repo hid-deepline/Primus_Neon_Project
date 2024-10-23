@@ -12,7 +12,7 @@
 				th:src="@{/images/Label Admin Primus Neon.png}">
 			</a>
 			<button class="navbar-toggler m-3" type="button"
-				data-bs-toggle="collapse" data-bs-target="#topNavbar">
+				data-bs-toggle="collapse" data-bs-target="#topNavbar, #searchNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="topNavbar">
@@ -46,8 +46,9 @@
 				<div class="collapse navbar-collapse" id="searchNavbar">
 					<form class="d-flex" th:action="@{/search}" method="get">
 						<input type="search" name="keyword" class="form-control me-sm-2"
+							th:value="${keyword}"
 							placeholder="Rechercher" required />
-						<button class="btn btn-outline-success" type="submit">Rechercher</button>
+						<input class="btn btn-outline-success" value="Rechercher" type="submit" />
 					</form>
 				</div>
 			</nav>
